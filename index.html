@@ -1575,6 +1575,239 @@
       flex-wrap: wrap;
     }
 
+    /* ===== CONTACT FORM ===== */
+    .contact-form-wrap {
+      max-width: 880px;
+      margin: 24px auto 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: border-color .4s;
+    }
+
+    .contact-form-wrap:hover {
+      border-color: rgba(0, 212, 255, 0.25);
+    }
+
+    .contact-form-wrap::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.08), transparent 55%),
+        radial-gradient(circle at 30% 70%, rgba(127, 90, 240, 0.08), transparent 55%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .contact-form-wrap>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-form-head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .contact-form-head h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-head h3 em {
+      font-style: italic;
+      color: var(--cyan);
+    }
+
+    .contact-form-head p {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      font-family: var(--mono);
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .3s;
+    }
+
+    .form-field:focus-within label {
+      color: var(--cyan);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color .3s, background .3s, box-shadow .3s;
+      resize: vertical;
+      min-width: 0;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(139, 147, 167, 0.5);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--cyan);
+      background: rgba(0, 212, 255, 0.04);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .form-field textarea {
+      min-height: 130px;
+      line-height: 1.7;
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .form-note {
+      font-size: 11.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-note::before {
+      content: "●";
+      color: var(--green);
+      font-size: 10px;
+      animation: badge-pulse 2s ease-in-out infinite;
+    }
+
+    .form-submit {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      color: #0a0c11;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform .3s var(--ease-out-quart), box-shadow .3s, opacity .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(0, 212, 255, 0.6);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-submit.loading::after {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(10, 12, 17, 0.3);
+      border-top-color: #0a0c11;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* form messages */
+    .form-message {
+      grid-column: 1 / -1;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: messageIn .4s var(--ease-out-quart);
+    }
+
+    .form-message.show {
+      display: flex;
+    }
+
+    .form-message.success {
+      background: rgba(44, 182, 125, 0.1);
+      border: 1px solid rgba(44, 182, 125, 0.3);
+      color: var(--green);
+    }
+
+    .form-message.error {
+      background: rgba(255, 106, 193, 0.08);
+      border: 1px solid rgba(255, 106, 193, 0.3);
+      color: var(--pink);
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       border-top: 1px solid var(--border);
@@ -1729,6 +1962,23 @@
 
       .contact-box {
         padding: 50px 24px;
+      }
+
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-wrap {
+        padding: 28px 22px;
+      }
+
+      .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .form-submit {
+        justify-content: center;
       }
     }
 
@@ -2223,6 +2473,53 @@
             rel="noopener">GitHub ↗</a>
         </div>
       </div>
+
+      <!-- ===== CONTACT FORM ===== -->
+      <div class="contact-form-wrap reveal">
+        <div class="contact-form-head">
+          <h3>Or send me a <em>direct message</em></h3>
+          <p>Fill this out and it lands in my inbox — I reply within 24h.</p>
+        </div>
+
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaeqapgn" method="POST"
+          novalidate>
+          <input type="hidden" name="_subject" value="New message from your portfolio" />
+          <input type="hidden" name="_captcha" value="false" />
+
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required
+              autocomplete="email" />
+          </div>
+
+          <div class="form-field full">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required />
+          </div>
+
+          <div class="form-field full">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <!-- honeypot (anti-spam) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="form-actions">
+            <span class="form-note">Your message goes straight to my inbox</span>
+            <button type="submit" class="form-submit" id="formSubmit">
+              Send Message <span>→</span>
+            </button>
+          </div>
+
+          <div class="form-message" id="formMessage"></div>
+        </form>
+      </div>
     </section>
   </main>
 
@@ -2318,7 +2615,7 @@
       }
       animateRing();
 
-      const hoverTargets = "a, button, .btn, .proj-card, .stat, .edu-card, .glass, .tag, .tech-icon";
+      const hoverTargets = "a, button, .btn, .proj-card, .stat, .edu-card, .glass, .tag, .tech-icon, input, textarea";
       document.querySelectorAll(hoverTargets).forEach(el => {
         el.addEventListener("mouseenter", () => ring.classList.add("hover"));
         el.addEventListener("mouseleave", () => ring.classList.remove("hover"));
@@ -2526,6 +2823,74 @@
         window.scrollTo({top, behavior: "smooth"});
       });
     });
+
+    /* =========================================================
+       16. CONTACT FORM — AJAX submit via Formspree
+    ========================================================= */
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      const submitBtn = document.getElementById("formSubmit");
+      const formMsg = document.getElementById("formMessage");
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = contactForm.name.value.trim();
+        const email = contactForm.email.value.trim();
+        const subject = contactForm.subject.value.trim();
+        const message = contactForm.message.value.trim();
+
+        if (!name || !email || !subject || !message) {
+          showFormMessage("Please fill in all fields.", "error");
+          return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showFormMessage("Please enter a valid email address.", "error");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.classList.add("loading");
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = "Sending…";
+        formMsg.classList.remove("show", "success", "error");
+
+        try {
+          const data = new FormData(contactForm);
+          const res = await fetch(contactForm.action, {
+            method: "POST",
+            body: data,
+            headers: {"Accept": "application/json"}
+          });
+
+          if (res.ok) {
+            showFormMessage("✓ Message sent! I'll get back to you soon.", "success");
+            contactForm.reset();
+          } else {
+            const json = await res.json().catch(() => ({}));
+            const err = (json.errors && json.errors[0] && json.errors[0].message) || "Something went wrong. Try again.";
+            showFormMessage(err, "error");
+          }
+        } catch (err) {
+          showFormMessage("Network error. Please check your connection and try again.", "error");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("loading");
+          submitBtn.innerHTML = originalText;
+        }
+      });
+
+      function showFormMessage(text, type) {
+        formMsg.textContent = text;
+        formMsg.className = "form-message show " + type;
+        if (type === "success") {
+          setTimeout(() => {
+            formMsg.classList.remove("show");
+          }, 6000);
+        }
+      }
+    }
   </script>
 </body>
 
