@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Cairo:wght@400;600;700&family=Amiri:ital@0;1&display=swap" 
+  rel="stylesheet" />    
   <style>
     :root {
       --bg: #0a0c11;
@@ -24,6 +24,8 @@
       --pink: #ff6ac1;
       --mono: 'Fira Code', ui-monospace, 'Cascadia Code', Consolas, monospace;
       --serif: 'Instrument Serif', Georgia, serif;
+      --ar-sans: 'Cairo', system-ui, sans-serif;
+      --ar-serif: 'Amiri', serif;
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     }
@@ -46,9 +48,56 @@
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
+      transition: font-family .3s;
     }
 
-    /* ===== SCROLL PROGRESS BAR ===== */
+    /* ===== Arabic Typography ===== */
+    [dir="rtl"] body,
+    [dir="rtl"] input,
+    [dir="rtl"] textarea,
+    [dir="rtl"] button {
+      font-family: var(--ar-sans);
+    }
+
+    [dir="rtl"] h1,
+    [dir="rtl"] .section-title,
+    [dir="rtl"] .cf-card h3,
+    [dir="rtl"] .stat .num,
+    [dir="rtl"] .tl-toggle h3,
+    [dir="rtl"] .edu-card h3,
+    [dir="rtl"] .certs-card h3,
+    [dir="rtl"] .contact-box h2,
+    [dir="rtl"] .contact-form-head h3,
+    [dir="rtl"] .glass h3,
+    [dir="rtl"] .about-left h3,
+    [dir="rtl"] .cf-num {
+      font-family: var(--ar-serif);
+      letter-spacing: 0;
+    }
+
+    /* ===== SVG Icons ===== */
+    .icon-svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .icon-svg.sm {
+      width: 18px;
+      height: 18px;
+    }
+
+    .icon-svg.lg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -115,7 +164,7 @@
       }
     }
 
-    /* ===== background ===== */
+    /* ===== Background ===== */
     .bg-grid {
       position: fixed;
       inset: 0;
@@ -181,7 +230,6 @@
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       padding: 14px 0;
-      margin-bottom: 0;
       transition: background .3s, border-color .3s, padding .3s;
     }
 
@@ -248,15 +296,55 @@
       border-radius: 2px;
     }
 
+    [dir="rtl"] .nav-links a::after {
+      left: auto;
+      right: 0;
+    }
+
     .nav-links a:hover::after,
     .nav-links a.active::after {
       width: 100%;
     }
 
-    .btn-hire {
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-toggle {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all .3s var(--ease-out-quart);
+    }
+
+    .lang-toggle:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .lang-toggle .current {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .lang-toggle .divider {
+      opacity: 0.3;
+    }
+
+    .btn-hire {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 9px 18px;
       border-radius: 10px;
       background: linear-gradient(135deg, var(--cyan), var(--violet));
@@ -268,6 +356,10 @@
       transition: transform .3s var(--ease-out-quart), box-shadow .3s;
       position: relative;
       overflow: hidden;
+    }
+
+    [dir="rtl"] .btn-hire {
+      font-family: var(--ar-sans);
     }
 
     .btn-hire::before {
@@ -311,7 +403,6 @@
       font-weight: 600;
       letter-spacing: 1.5px;
       margin-bottom: 22px;
-      font-family: var(--mono);
     }
 
     .hero-badge::before {
@@ -342,7 +433,6 @@
       color: var(--cyan);
       font-size: 14px;
       margin-bottom: 16px;
-      font-family: var(--mono);
     }
 
     .eyebrow::before {
@@ -379,7 +469,6 @@
       font-size: 17px;
       color: var(--text);
       min-height: 30px;
-      font-family: var(--mono);
     }
 
     .role .typed {
@@ -392,7 +481,7 @@
       height: 1em;
       background: var(--cyan);
       vertical-align: -2px;
-      margin-left: 2px;
+      margin-inline-start: 2px;
       animation: blink 1s steps(1) infinite;
     }
 
@@ -408,7 +497,6 @@
       font-size: 14.5px;
       line-height: 1.85;
       max-width: 520px;
-      font-family: var(--mono);
     }
 
     .actions {
@@ -419,7 +507,6 @@
     }
 
     .btn {
-      font-family: var(--mono);
       font-size: 13.5px;
       text-decoration: none;
       padding: 13px 22px;
@@ -491,7 +578,7 @@
 
     .glass {
       position: absolute;
-      left: -10px;
+      inset-inline-start: -10px;
       bottom: 40px;
       width: 300px;
       padding: 20px 22px;
@@ -502,7 +589,6 @@
       border-radius: 18px;
       box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .6);
       animation: float 6s ease-in-out infinite;
-      font-family: var(--mono);
       transition: transform .5s var(--ease-out-quart);
     }
 
@@ -525,7 +611,6 @@
       font-size: 16px;
       margin: 6px 0 8px;
       font-weight: 600;
-      font-family: var(--mono);
     }
 
     .glass p {
@@ -536,7 +621,7 @@
 
     .glass .arrow {
       position: absolute;
-      right: 16px;
+      inset-inline-end: 16px;
       top: 16px;
       width: 38px;
       height: 38px;
@@ -605,7 +690,6 @@
       display: inline-flex;
       align-items: center;
       gap: 34px;
-      font-family: var(--mono);
       transition: color .3s, transform .3s;
     }
 
@@ -632,105 +716,14 @@
       }
     }
 
-    /* ===== CODE CARD ===== */
-    .code {
-      margin-top: 70px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .7);
-      transition: transform .5s var(--ease-out-quart), box-shadow .5s, border-color .3s;
+    [dir="rtl"] .track {
+      animation-name: scroll-rtl;
     }
 
-    .code:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 212, 255, 0.25);
-      box-shadow: 0 40px 100px -40px rgba(0, 212, 255, 0.3);
-    }
-
-    .code-head {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      font-size: 12.5px;
-      color: var(--muted);
-      font-family: var(--mono);
-    }
-
-    .code-head i {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      display: inline-block;
-      transition: transform .3s, filter .3s;
-    }
-
-    .code:hover .code-head i:nth-child(1) {
-      transform: scale(1.2);
-    }
-
-    .code:hover .code-head i:nth-child(2) {
-      transform: scale(1.2);
-      transition-delay: .05s;
-    }
-
-    .code:hover .code-head i:nth-child(3) {
-      transform: scale(1.2);
-      transition-delay: .1s;
-    }
-
-    .code-head i:nth-child(1) {
-      background: #ff5f56;
-    }
-
-    .code-head i:nth-child(2) {
-      background: #ffbd2e;
-    }
-
-    .code-head i:nth-child(3) {
-      background: #27c93f;
-    }
-
-    .code-head span {
-      margin-left: 10px;
-    }
-
-    .code pre {
-      padding: 26px 28px;
-      font-size: 14.5px;
-      line-height: 1.9;
-      overflow-x: auto;
-      color: var(--text);
-      font-family: var(--mono);
-    }
-
-    .k {
-      color: var(--pink);
-    }
-
-    .f {
-      color: var(--cyan);
-    }
-
-    .s {
-      color: #a5e075;
-    }
-
-    .n {
-      color: #f7b267;
-    }
-
-    .c {
-      color: #5c6578;
-      font-style: italic;
-    }
-
-    .v {
-      color: var(--violet);
+    @keyframes scroll-rtl {
+      to {
+        transform: translateX(50%);
+      }
     }
 
     /* ===== SECTION HEADS ===== */
@@ -749,9 +742,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 12px;
-      font-family: var(--mono);
       display: inline-block;
-      position: relative;
     }
 
     .section-eyebrow::before {
@@ -780,7 +771,6 @@
       display: inline-block;
     }
 
-    /* section title reveal */
     .title-reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -819,7 +809,6 @@
       font-size: 14px;
       line-height: 1.9;
       margin-bottom: 16px;
-      font-family: var(--mono);
     }
 
     .about-left .btn {
@@ -864,15 +853,15 @@
     }
 
     .stat .icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 11px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(127, 90, 240, 0.15));
       border: 1px solid var(--border);
       margin-bottom: 12px;
-      font-size: 18px;
+      color: var(--cyan);
       transition: transform .4s var(--ease-out-quart);
     }
 
@@ -895,7 +884,6 @@
     .stat .label {
       font-size: 12px;
       color: var(--muted);
-      font-family: var(--mono);
     }
 
     /* ===== SKILLS ===== */
@@ -917,7 +905,6 @@
       justify-content: space-between;
       font-size: 13px;
       font-weight: 500;
-      font-family: var(--mono);
     }
 
     .skill-name {
@@ -949,7 +936,6 @@
 
     .skill-pct {
       color: var(--cyan);
-      font-family: var(--mono);
       font-size: 12px;
       transition: color .3s;
     }
@@ -977,6 +963,10 @@
       position: relative;
     }
 
+    [dir="rtl"] .bar span {
+      background: linear-gradient(-90deg, var(--cyan), var(--violet));
+    }
+
     .bar span::after {
       content: "";
       position: absolute;
@@ -996,42 +986,56 @@
       width: var(--w);
     }
 
-    /* ===== PROJECTS ===== */
-    .proj-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 22px;
-      perspective: 1200px;
+    /* ===== PROJECTS COVERFLOW ===== */
+    .coverflow-wrap {
+      position: relative;
+      max-width: 1120px;
+      margin: 0 auto;
     }
 
-    .proj-card {
+    .coverflow {
       position: relative;
+      height: 560px;
+      perspective: 1600px;
+      perspective-origin: center center;
+      overflow: visible;
+      user-select: none;
+      touch-action: pan-y;
+    }
+
+    .cf-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      max-width: 90vw;
+      height: auto;
+      padding: 30px 28px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px;
+      border-radius: 20px;
       text-decoration: none;
       color: inherit;
-      overflow: hidden;
-      transition: transform .45s var(--ease-out-quart), border-color .3s, box-shadow .4s;
       display: flex;
       flex-direction: column;
-      font-family: var(--mono);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+      transform: translate(-50%, -50%);
       transform-style: preserve-3d;
-      will-change: transform;
+      transition: transform .9s var(--ease-out-expo), opacity .9s var(--ease-out-expo),
+        border-color .4s, box-shadow .5s;
+      will-change: transform, opacity;
+      cursor: pointer;
     }
 
-    .proj-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 100% 0%, rgba(127, 90, 240, 0.15), transparent 50%);
-      opacity: 0;
-      transition: opacity .35s;
-      pointer-events: none;
+    .cf-card.active {
+      border-color: rgba(0, 212, 255, 0.5);
+      box-shadow: 0 40px 80px -30px rgba(0, 212, 255, 0.35),
+        0 0 0 1px rgba(0, 212, 255, 0.15) inset;
     }
 
-    .proj-card::after {
+    .cf-card.active::after {
       content: "";
       position: absolute;
       top: 0;
@@ -1039,101 +1043,92 @@
       right: 0;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
-      transform: translateX(-100%);
-      transition: transform .6s var(--ease-out-quart);
     }
 
-    .proj-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(127, 90, 240, 0.5);
-      box-shadow: 0 30px 60px -30px rgba(127, 90, 240, 0.5);
+    .cf-card:hover {
+      border-color: rgba(127, 90, 240, 0.6);
     }
 
-    .proj-card:hover::before {
-      opacity: 1;
-    }
-
-    .proj-card:hover::after {
-      transform: translateX(100%);
-    }
-
-    .proj-num {
+    .cf-num {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 42px;
+      font-size: 44px;
       line-height: 1;
-      color: rgba(255, 255, 255, 0.1);
-      margin-bottom: 12px;
-      transition: color .4s, transform .4s var(--ease-out-quart);
+      color: rgba(255, 255, 255, 0.12);
+      margin-bottom: 14px;
+      transition: color .4s;
     }
 
-    .proj-card:hover .proj-num {
-      color: rgba(0, 212, 255, 0.35);
-      transform: translateX(4px);
+    .cf-card.active .cf-num {
+      color: rgba(0, 212, 255, 0.45);
     }
 
-    .proj-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
+    .cf-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(127, 90, 240, 0.15));
       border: 1px solid var(--border);
-      font-size: 20px;
-      margin-bottom: 16px;
-      transition: transform .5s var(--ease-out-quart), border-color .3s;
+      color: var(--cyan);
+      margin-bottom: 18px;
+      transition: transform .5s var(--ease-out-quart), border-color .3s, color .3s;
     }
 
-    .proj-card:hover .proj-icon {
-      transform: translateY(-4px) rotate(-8deg) scale(1.08);
+    .cf-card.active .cf-icon {
       border-color: rgba(0, 212, 255, 0.4);
+      color: var(--text);
     }
 
-    .proj-card h3 {
-      font-size: 17px;
+    .cf-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .cf-card h3 {
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.3px;
       transition: color .3s;
     }
 
-    .proj-card:hover h3 {
+    .cf-card.active h3 {
       color: var(--cyan);
     }
 
-    .proj-card p {
+    .cf-card p {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 13.5px;
       line-height: 1.75;
+      margin-bottom: 18px;
       flex: 1;
-      margin-bottom: 16px;
     }
 
-    .proj-tags {
+    .cf-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .proj-tags span {
+    .cf-tags span {
       font-size: 11px;
       padding: 4px 10px;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: var(--muted);
-      font-family: var(--mono);
-      transition: color .3s, border-color .3s, transform .3s;
+      transition: color .3s, border-color .3s;
     }
 
-    .proj-card:hover .proj-tags span {
+    .cf-card.active .cf-tags span {
       color: var(--text);
       border-color: rgba(0, 212, 255, 0.3);
     }
 
-    .proj-link {
+    .cf-link {
       color: var(--cyan);
       font-size: 13px;
       display: inline-flex;
@@ -1142,14 +1137,80 @@
       transition: gap .35s var(--ease-out-quart);
     }
 
-    .proj-card:hover .proj-link {
+    .cf-card.active .cf-link {
       gap: 10px;
+    }
+
+    .cf-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .cf-arrow {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(18, 22, 31, 0.9);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all .3s var(--ease-out-quart);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .cf-arrow:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 212, 255, 0.5);
+    }
+
+    .cf-arrow:active {
+      transform: scale(0.95);
+    }
+
+    .cf-arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .cf-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .cf-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      cursor: pointer;
+      transition: all .4s var(--ease-out-quart);
+      padding: 0;
+    }
+
+    .cf-dot:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .cf-dot.active {
+      width: 28px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
     }
 
     /* ===== TIMELINE ===== */
     .timeline {
       position: relative;
-      padding-left: 40px;
+      padding-inline-start: 40px;
       max-width: 880px;
       margin: 0 auto;
     }
@@ -1157,7 +1218,7 @@
     .timeline::before {
       content: "";
       position: absolute;
-      left: 11px;
+      inset-inline-start: 11px;
       top: 12px;
       bottom: 12px;
       width: 2px;
@@ -1180,6 +1241,10 @@
       transition: opacity .9s var(--ease-out-quart), transform .9s var(--ease-out-quart);
     }
 
+    [dir="rtl"] .tl-item {
+      transform: translateX(30px);
+    }
+
     .tl-item.in-view {
       opacity: 1;
       transform: translateX(0);
@@ -1191,7 +1256,7 @@
 
     .tl-node {
       position: absolute;
-      left: -40px;
+      inset-inline-start: -40px;
       top: 8px;
       width: 24px;
       height: 24px;
@@ -1244,36 +1309,142 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 24px 28px;
+      padding: 0;
       backdrop-filter: blur(10px);
-      transition: border-color .4s, transform .5s var(--ease-out-quart), box-shadow .4s;
+      transition: border-color .4s, box-shadow .4s;
       position: relative;
-      font-family: var(--mono);
+      overflow: hidden;
     }
 
     .tl-content::before {
       content: "";
       position: absolute;
-      left: -28px;
-      top: 20px;
+      inset-inline-start: -28px;
+      top: 30px;
       width: 28px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border-2));
     }
 
-    .tl-content:hover {
+    .tl-item.open .tl-content {
       border-color: rgba(0, 212, 255, 0.35);
-      transform: translateX(4px);
-      box-shadow: 0 20px 50px -20px rgba(0, 212, 255, 0.25);
+      box-shadow: 0 20px 50px -25px rgba(0, 212, 255, 0.35);
     }
 
-    .tl-header {
+    .tl-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: inherit;
+      text-align: start;
+      font-family: inherit;
+      transition: background .3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-toggle:hover {
+      background: rgba(0, 212, 255, 0.03);
+    }
+
+    .tl-toggle-main {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tl-toggle .tl-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .tl-toggle h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 2px;
+      text-align: start;
+      transition: color .3s;
+    }
+
+    [dir="rtl"] .tl-toggle h3 {
+      font-family: var(--ar-serif);
+    }
+
+    .tl-toggle .tl-company {
+      color: var(--cyan);
+      font-size: 13px;
+      display: inline-block;
+      margin-bottom: 0;
+      text-align: start;
+    }
+
+    .tl-chevron {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: transform .5s var(--ease-out-quart), color .3s, border-color .3s, background .3s;
+    }
+
+    .tl-chevron svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tl-toggle:hover .tl-chevron {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+    }
+
+    .tl-item.open .tl-chevron {
+      transform: rotate(180deg);
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+    }
+
+    .tl-content-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .55s var(--ease-out-expo);
+    }
+
+    .tl-item.open .tl-content-body {
+      grid-template-rows: 1fr;
+    }
+
+    .tl-content-body>.tl-inner {
+      overflow: hidden;
+      min-height: 0;
+      transition: opacity .4s ease, padding .4s ease;
+      opacity: 0;
+      padding: 0 28px;
+    }
+
+    .tl-item.open .tl-content-body>.tl-inner {
+      opacity: 1;
+      padding: 4px 28px 26px;
+      transition: opacity .55s ease .1s, padding .45s var(--ease-out-expo);
     }
 
     .tl-date {
@@ -1283,7 +1454,7 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.03);
-      font-family: var(--mono);
+      display: inline-block;
     }
 
     .tl-badge {
@@ -1293,8 +1464,10 @@
       border-radius: 999px;
       background: rgba(44, 182, 125, 0.1);
       border: 1px solid rgba(44, 182, 125, 0.3);
-      font-family: var(--mono);
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .tl-badge::before {
@@ -1318,23 +1491,6 @@
       }
     }
 
-    .tl-content h3 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 24px;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .tl-company {
-      color: var(--cyan);
-      font-size: 13px;
-      display: inline-block;
-      margin-bottom: 14px;
-      font-family: var(--mono);
-    }
-
     .tl-body {
       display: flex;
       flex-direction: column;
@@ -1346,19 +1502,19 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
-      padding-left: 20px;
+      padding-inline-start: 20px;
       position: relative;
     }
 
     .tl-body li::before {
       content: "▹";
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       color: var(--violet);
-      transition: transform .3s, color .3s;
+      transition: color .3s;
     }
 
-    .tl-content:hover .tl-body li::before {
+    .tl-item.open .tl-body li::before {
       color: var(--cyan);
     }
 
@@ -1376,7 +1532,6 @@
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border);
       color: var(--muted);
-      font-family: var(--mono);
       transition: color .25s, border-color .25s, transform .3s;
     }
 
@@ -1402,7 +1557,6 @@
       padding: 26px 28px;
       backdrop-filter: blur(10px);
       transition: transform .45s var(--ease-out-quart), border-color .3s, box-shadow .4s;
-      font-family: var(--mono);
     }
 
     .edu-card:hover {
@@ -1443,7 +1597,6 @@
       border-radius: 18px;
       padding: 26px 30px;
       backdrop-filter: blur(10px);
-      font-family: var(--mono);
     }
 
     .certs-card h3 {
@@ -1464,7 +1617,7 @@
     .cert-item {
       font-size: 13px;
       color: var(--muted);
-      padding-left: 22px;
+      padding-inline-start: 22px;
       position: relative;
       line-height: 1.55;
       transition: color .3s, transform .3s;
@@ -1475,10 +1628,14 @@
       transform: translateX(3px);
     }
 
+    [dir="rtl"] .cert-item:hover {
+      transform: translateX(-3px);
+    }
+
     .cert-item::before {
       content: "✓";
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       color: var(--green);
       font-weight: 700;
       transition: color .3s, transform .3s;
@@ -1565,7 +1722,6 @@
       max-width: 480px;
       margin: 0 auto 30px;
       line-height: 1.8;
-      font-family: var(--mono);
     }
 
     .contact-links {
@@ -1633,14 +1789,12 @@
     .contact-form-head p {
       font-size: 13px;
       color: var(--muted);
-      font-family: var(--mono);
     }
 
     .contact-form {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
-      font-family: var(--mono);
     }
 
     .form-field {
@@ -1668,7 +1822,6 @@
 
     .form-field input,
     .form-field textarea {
-      font-family: var(--mono);
       font-size: 14px;
       color: var(--text);
       background: rgba(255, 255, 255, 0.03);
@@ -1717,14 +1870,15 @@
     }
 
     .form-note::before {
-      content: "●";
-      color: var(--green);
-      font-size: 10px;
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
       animation: badge-pulse 2s ease-in-out infinite;
     }
 
     .form-submit {
-      font-family: var(--mono);
       font-size: 13.5px;
       font-weight: 600;
       padding: 13px 26px;
@@ -1737,8 +1891,6 @@
       align-items: center;
       gap: 10px;
       transition: transform .3s var(--ease-out-quart), box-shadow .3s, opacity .3s;
-      position: relative;
-      overflow: hidden;
     }
 
     .form-submit:hover {
@@ -1768,7 +1920,6 @@
       }
     }
 
-    /* form messages */
     .form-message {
       grid-column: 1 / -1;
       padding: 14px 18px;
@@ -1823,7 +1974,6 @@
       gap: 16px;
       color: var(--muted);
       font-size: 13px;
-      font-family: var(--mono);
     }
 
     .foot-links {
@@ -1855,7 +2005,6 @@
       transform: none;
     }
 
-    /* hero entrance */
     .hero-enter {
       opacity: 0;
       transform: translateY(40px);
@@ -1903,6 +2052,16 @@
     }
 
     /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .coverflow {
+        height: 540px;
+      }
+
+      .cf-card {
+        width: 360px;
+      }
+    }
+
     @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
@@ -1913,7 +2072,7 @@
       }
 
       .glass {
-        left: 0;
+        inset-inline-start: 0;
       }
 
       .about-grid {
@@ -1932,6 +2091,14 @@
       .nav-links {
         display: none;
       }
+
+      .coverflow {
+        height: 520px;
+      }
+
+      .cf-card {
+        width: 340px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1940,19 +2107,19 @@
       }
 
       .timeline {
-        padding-left: 30px;
+        padding-inline-start: 30px;
       }
 
       .timeline::before {
-        left: 6px;
+        inset-inline-start: 6px;
       }
 
       .tl-node {
-        left: -30px;
+        inset-inline-start: -30px;
       }
 
       .tl-content::before {
-        left: -18px;
+        inset-inline-start: -18px;
         width: 18px;
       }
 
@@ -1980,6 +2147,66 @@
       .form-submit {
         justify-content: center;
       }
+
+      .coverflow {
+        height: 500px;
+        perspective: 1200px;
+      }
+
+      .cf-card {
+        width: 88vw;
+        padding: 24px 22px;
+      }
+
+      .cf-num {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      .cf-icon {
+        width: 46px;
+        height: 46px;
+        margin-bottom: 14px;
+      }
+
+      .cf-card h3 {
+        font-size: 18px;
+      }
+
+      .cf-card p {
+        font-size: 12.5px;
+      }
+
+      .cf-arrow {
+        width: 42px;
+        height: 42px;
+      }
+
+      .cf-controls {
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .tl-toggle {
+        padding: 18px 20px;
+      }
+
+      .tl-toggle h3 {
+        font-size: 18px;
+      }
+
+      .tl-content-body>.tl-inner {
+        padding: 0 20px;
+      }
+
+      .tl-item.open .tl-content-body>.tl-inner {
+        padding: 4px 20px 22px;
+      }
+
+      .tl-chevron {
+        width: 34px;
+        height: 34px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2003,6 +2230,10 @@
       .timeline::before {
         transform: scaleY(1);
       }
+
+      .cf-card {
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -2023,14 +2254,22 @@
         <span>Shahd.</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#home" data-section="home">Home</a></li>
-        <li><a href="#about" data-section="about">About</a></li>
-        <li><a href="#skills" data-section="skills">Skills</a></li>
-        <li><a href="#projects" data-section="projects">Projects</a></li>
-        <li><a href="#experience" data-section="experience">Experience</a></li>
-        <li><a href="#contact" data-section="contact">Contact</a></li>
+        <li><a href="#home" data-section="home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+        <li><a href="#about" data-section="about" data-en="About" data-ar="نبذة">About</a></li>
+        <li><a href="#skills" data-section="skills" data-en="Skills" data-ar="المهارات">Skills</a></li>
+        <li><a href="#projects" data-section="projects" data-en="Projects" data-ar="المشاريع">Projects</a></li>
+        <li><a href="#experience" data-section="experience" data-en="Experience" data-ar="الخبرة">Experience</a></li>
+        <li><a href="#contact" data-section="contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
       </ul>
-      <a href="mailto:eng.shahd.abusharif@gmail.com" class="btn-hire magnetic">Hire Me ↗</a>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="current" id="langCurrent">EN</span>
+          <span class="divider">·</span>
+          <span id="langOther">ع</span>
+        </button>
+        <a href="mailto:eng.shahd.abusharif@gmail.com" class="btn-hire magnetic" data-en="Hire Me" data-ar="وظّفني">Hire
+          Me ↗</a>
+      </div>
     </div>
   </header>
 
@@ -2039,19 +2278,39 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="home">
       <div>
-        <span class="hero-badge hero-enter">I'M A BACKEND DEVELOPER</span>
-        <p class="eyebrow hero-enter">hello, world</p>
-        <h1 class="hero-enter">From vision to <em>execution</em></h1>
-        <p class="role hero-enter">Eng Shahd M. Abu Sharif · <span class="typed" id="typed"></span><span
-            class="caret"></span></p>
-        <p class="lead hero-enter">
-          I build scalable backend systems, intelligent applications, and digital products
-          that solve real-world problems. Passionate about clean architecture, collaborative
-          leadership, and continuous learning.
+        <span class="hero-badge hero-enter" data-en="I'M A BACKEND DEVELOPER" data-ar="مهندسة برمجيات · Backend">I'M A
+          BACKEND DEVELOPER</span>
+        <p class="eyebrow hero-enter" data-en="hello, world" data-ar="مرحباً بالعالم">hello, world</p>
+        <h1 class="hero-enter">
+          <span data-en="From vision to " data-ar="من الفكرة إلى ">From vision to </span><em data-en="execution"
+            data-ar="التنفيذ">execution</em>
+        </h1>
+        <p class="role hero-enter">
+          <span data-en="Eng Shahd M. Abu Sharif" data-ar="م. شهد محمد أبو شريف">Eng Shahd M. Abu Sharif</span>
+          · <span class="typed" id="typed"></span><span class="caret"></span>
+        </p>
+        <p class="lead hero-enter"
+          data-en="I'm Shahd Abu Sharif, a backend engineer and technical team lead. I design clean architectures, secure APIs and real-time systems that hold up in production."
+          data-ar="أنا شهد أبو شريف، مهندسة Backend وقائدة فريق تقني. أصمّم أنظمة نظيفة، وواجهات برمجية آمنة، وأنظمة فورية تتحمّل بيئة الإنتاج.">
+          I'm Shahd Abu Sharif, a backend engineer and technical team lead. I design clean architectures, secure APIs
+          and real-time systems that hold up in production.
         </p>
         <div class="actions hero-enter">
-          <a class="btn primary magnetic" href="./files/eng-Shahd-M-Abu-Sharif-CV.pdf" download>↓ My CV</a>
-          <a class="btn magnetic" href="mailto:eng.shahd.abusharif@gmail.com">Get in touch →</a>
+          <a class="btn primary magnetic" href="./files/eng-Shahd-M-Abu-Sharif-CV.pdf" download>
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span data-en="My CV" data-ar="سيرتي الذاتية">My CV</span>
+          </a>
+          <a class="btn magnetic" href="mailto:eng.shahd.abusharif@gmail.com">
+            <span data-en="Get in touch" data-ar="تواصل معي">Get in touch</span>
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
         </div>
       </div>
 
@@ -2059,9 +2318,11 @@
         <div class="ring"></div>
         <img src="./files/me.png" alt="Shahd Abu Sharif" onerror="this.style.display='none'" />
         <div class="glass">
-          <small>Select project</small>
-          <h3>Available for projects</h3>
-          <p>Share a few details, and I'll get back with a clear direction.</p>
+          <small data-en="Select project" data-ar="اختر مشروعاً">Select project</small>
+          <h3 data-en="Available for projects" data-ar="متاحة للمشاريع">Available for projects</h3>
+          <p data-en="Share a few details, and I'll get back with a clear direction."
+            data-ar="شارك تفاصيل مشروعك، وسأعود إليك برؤية واضحة.">Share a few details, and I'll get back with a clear
+            direction.</p>
           <div class="arrow">↗</div>
         </div>
       </div>
@@ -2077,66 +2338,76 @@
       </div>
     </section>
 
-    <!-- ============ CODE CARD ============ -->
-    <section class="code reveal">
-      <div class="code-head"><i></i><i></i><i></i><span>shahd.ts</span></div>
-      <pre><span class="c">// who am I?</span>
-<span class="k">const</span> <span class="v">shahd</span> = {
-  <span class="f">role</span>:    <span class="s">"Backend Engineer · Team Lead"</span>,
-  <span class="f">focus</span>:   [<span class="s">"Architecture"</span>, <span class="s">"Databases"</span>, <span class="s">"System Design"</span>],
-  <span class="f">building</span>: <span class="s">"Tadreeby"</span>,
-  <span class="f">coffee</span>:  <span class="n">∞</span>,
-};
-
-<span class="k">export default</span> <span class="f">ship</span>(<span class="v">shahd</span>); <span class="c">// let's build something great</span></pre>
-    </section>
-
     <!-- ============ ABOUT ============ -->
     <section class="section reveal" id="about">
       <div class="section-head">
-        <p class="section-eyebrow">about me</p>
-        <h2 class="section-title title-reveal">Passionate about <em>building solutions</em></h2>
+        <p class="section-eyebrow" data-en="about me" data-ar="نبذة عني">about me</p>
+        <h2 class="section-title title-reveal">
+          <span data-en="Passionate about " data-ar="شغوفة بـ ">Passionate about </span><em data-en="building solutions"
+            data-ar="بناء الحلول">building solutions</em>
+        </h2>
       </div>
 
       <div class="about-grid">
         <div class="about-left">
-          <h3>Clean architecture, scalable systems, <em>real impact</em>.</h3>
-          <p>
-            I'm a Software Engineer and Technical Team Lead with hands-on experience
-            leading cross-functional teams and delivering production-ready backend
-            systems. My focus is on clean architecture, database design, and secure
+          <h3>
+            <span data-en="Clean architecture, scalable systems, " data-ar="معمارية نظيفة، أنظمة قابلة للتوسّع، ">Clean
+              architecture, scalable systems, </span><em data-en="real impact" data-ar="وأثر حقيقي">real impact</em>.
+          </h3>
+          <p data-en="I'm a Software Engineer and Technical Team Lead with hands-on experience leading cross-functional teams and delivering production-ready backend systems. My focus is on clean architecture, database design, and secure API development."
+            data-ar="أنا مهندسة برمجيات وقائدة فريق تقني، أمتلك خبرة عملية في قيادة فرق متعددة التخصصات وتسليم أنظمة Backend جاهزة للإنتاج. أركّز على المعمارية النظيفة، وتصميم قواعد البيانات، وتطوير واجهات برمجية آمنة.">
+            I'm a Software Engineer and Technical Team Lead with hands-on experience leading cross-functional teams and
+            delivering production-ready backend systems. My focus is on clean architecture, database design, and secure
             API development.
           </p>
-          <p>
-            From designing normalized relational databases to implementing JWT/RBAC
-            authentication, WebSockets, and Docker-based deployments — I care about
-            code that lasts and systems that scale.
+          <p data-en="From designing normalized relational databases to implementing JWT/RBAC authentication, WebSockets, and Docker-based deployments — I care about code that lasts and systems that scale."
+            data-ar="من تصميم قواعد بيانات علائقية مُطبّعة إلى تنفيذ مصادقة JWT/RBAC، وWebSockets، ونشر عبر Docker — أهتم بالكود الذي يدوم والأنظمة التي تتوسّع.">
+            From designing normalized relational databases to implementing JWT/RBAC authentication, WebSockets, and
+            Docker-based deployments — I care about code that lasts and systems that scale.
           </p>
           <a href="https://linkedin.com/in/eng-shahd-abu-sharif" target="_blank" rel="noopener" class="btn magnetic">
-            Learn More About Me ↗
+            <span data-en="Learn More About Me" data-ar="تعرّف عليّ أكثر">Learn More About Me</span>
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
           </a>
         </div>
 
         <div class="stats-grid">
           <div class="stat reveal">
-            <div class="icon">⚡</div>
+            <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg></div>
             <div class="num" data-count="3" data-suffix="+">0</div>
-            <div class="label">Internships</div>
+            <div class="label" data-en="Internships" data-ar="تدريبات">Internships</div>
           </div>
           <div class="stat reveal">
-            <div class="icon">📦</div>
+            <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
+              </svg></div>
             <div class="num" data-count="10" data-suffix="+">0</div>
-            <div class="label">Projects Built</div>
+            <div class="label" data-en="Projects Built" data-ar="مشروع منجز">Projects Built</div>
           </div>
           <div class="stat reveal">
-            <div class="icon">🏅</div>
+            <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg></div>
             <div class="num" data-count="8">0</div>
-            <div class="label">Certifications</div>
+            <div class="label" data-en="Certifications" data-ar="شهادة">Certifications</div>
           </div>
           <div class="stat reveal">
-            <div class="icon">🎯</div>
+            <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg></div>
             <div class="num" data-count="100" data-suffix="%">0</div>
-            <div class="label">Commitment</div>
+            <div class="label" data-en="Commitment" data-ar="التزام">Commitment</div>
           </div>
         </div>
       </div>
@@ -2145,303 +2416,448 @@
     <!-- ============ SKILLS ============ -->
     <section class="section reveal" id="skills">
       <div class="section-head">
-        <p class="section-eyebrow">my skills</p>
-        <h2 class="section-title title-reveal">Technologies I <em>master</em></h2>
+        <p class="section-eyebrow" data-en="my skills" data-ar="مهاراتي">my skills</p>
+        <h2 class="section-title title-reveal">
+          <span data-en="Technologies I " data-ar="تقنيات ">Technologies I </span><em data-en="master"
+            data-ar="أتقنها">master</em>
+        </h2>
       </div>
 
       <div class="skills-grid">
         <div class="skill" style="--w: 92%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">TS</span> TypeScript</span>
-            <span class="skill-pct">92%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">TS</span> TypeScript</span><span
+              class="skill-pct">92%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 90%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Nst</span> NestJS</span>
-            <span class="skill-pct">90%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Nst</span> NestJS</span><span
+              class="skill-pct">90%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 88%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">PG</span> PostgreSQL</span>
-            <span class="skill-pct">88%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">PG</span> PostgreSQL</span><span
+              class="skill-pct">88%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 88%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Nd</span> Node.js</span>
-            <span class="skill-pct">88%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Nd</span> Node.js</span><span
+              class="skill-pct">88%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 85%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Pri</span> Prisma ORM</span>
-            <span class="skill-pct">85%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Pri</span> Prisma ORM</span><span
+              class="skill-pct">85%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 80%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Dkr</span> Docker</span>
-            <span class="skill-pct">80%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Dkr</span> Docker</span><span
+              class="skill-pct">80%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 82%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Py</span> Python</span>
-            <span class="skill-pct">82%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Py</span> Python</span><span
+              class="skill-pct">82%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 78%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">Dj</span> Django</span>
-            <span class="skill-pct">78%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">Dj</span> Django</span><span
+              class="skill-pct">78%</span></div>
           <div class="bar"><span></span></div>
         </div>
-
         <div class="skill" style="--w: 90%">
-          <div class="skill-head">
-            <span class="skill-name"><span class="mark">REST</span> REST APIs</span>
-            <span class="skill-pct">90%</span>
-          </div>
+          <div class="skill-head"><span class="skill-name"><span class="mark">REST</span> REST APIs</span><span
+              class="skill-pct">90%</span></div>
           <div class="bar"><span></span></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ PROJECTS ============ -->
+    <!-- ============ PROJECTS COVERFLOW ============ -->
     <section class="section reveal" id="projects">
       <div class="section-head">
-        <p class="section-eyebrow">featured projects</p>
-        <h2 class="section-title title-reveal">Some of my <em>recent work</em></h2>
+        <p class="section-eyebrow" data-en="featured projects" data-ar="مشاريع مختارة">featured projects</p>
+        <h2 class="section-title title-reveal">
+          <span data-en="Some of my " data-ar="بعض من ">Some of my </span><em data-en="recent work"
+            data-ar="أعمالي الأخيرة">recent work</em>
+        </h2>
       </div>
 
-      <div class="proj-grid">
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">01</div>
-          <div class="proj-icon">⚙️</div>
-          <h3>Tadreeby Platform</h3>
-          <p>Internship management platform with applications, attendance, tasks, evaluations, certificates, and
-            dashboards. Built end-to-end with NestJS, PostgreSQL, Prisma, and React.</p>
-          <div class="proj-tags">
-            <span>NestJS</span><span>PostgreSQL</span><span>Prisma</span><span>React</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+      <div class="coverflow-wrap">
+        <div class="coverflow" id="coverflow">
+          <a class="cf-card" data-index="0" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">01</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg></div>
+            <h3 data-en="Tadreeby Platform" data-ar="منصة تدريبي">Tadreeby Platform</h3>
+            <p data-en="Internship management platform with applications, attendance, tasks, evaluations, certificates, and dashboards. Built end-to-end with NestJS, PostgreSQL, Prisma, and React."
+              data-ar="منصة لإدارة التدريب تشمل الطلبات، والحضور، والمهام، والتقييمات، والشهادات، ولوحات التحكم. مبنية بالكامل بـ NestJS وPostgreSQL وPrisma وReact.">
+              Internship management platform with applications, attendance, tasks, evaluations, certificates, and
+              dashboards. Built end-to-end with NestJS, PostgreSQL, Prisma, and React.
+            </p>
+            <div class="cf-tags"><span>NestJS</span><span>PostgreSQL</span><span>Prisma</span><span>React</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
 
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">02</div>
-          <div class="proj-icon">💊</div>
-          <h3>Pharmacy Delivery Platform</h3>
-          <p>Multi-vendor pharmacy delivery backend with authentication (JWT/RBAC), medication catalog, order workflows,
-            and optimized REST APIs.</p>
-          <div class="proj-tags">
-            <span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>JWT</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+          <a class="cf-card" data-index="1" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">02</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z" />
+                <path d="m8.5 8.5 7 7" />
+              </svg></div>
+            <h3 data-en="Pharmacy Delivery Platform" data-ar="منصة توصيل الصيدليات">Pharmacy Delivery Platform</h3>
+            <p data-en="Multi-vendor pharmacy delivery backend with authentication (JWT/RBAC), medication catalog, order workflows, and optimized REST APIs."
+              data-ar="نظام Backend لخدمة توصيل أدوية متعدد الصيدليات، مع مصادقة (JWT/RBAC)، وفهرس أدوية، ودورات طلب، وواجهات REST مُحسّنة.">
+              Multi-vendor pharmacy delivery backend with authentication (JWT/RBAC), medication catalog, order
+              workflows, and optimized REST APIs.
+            </p>
+            <div class="cf-tags"><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>JWT</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
 
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">03</div>
-          <div class="proj-icon">🧠</div>
-          <h3>Breast Cancer Detection ML</h3>
-          <p>End-to-end machine learning web application with data preprocessing, feature engineering, model training,
-            evaluation, and visualization.</p>
-          <div class="proj-tags">
-            <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>ML</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+          <a class="cf-card" data-index="2" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">03</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg></div>
+            <h3 data-en="Breast Cancer Detection ML" data-ar="كشف سرطان الثدي بالتعلم الآلي">Breast Cancer Detection ML
+            </h3>
+            <p data-en="End-to-end machine learning web application with data preprocessing, feature engineering, model training, evaluation, and visualization."
+              data-ar="تطبيق ويب متكامل للتعلم الآلي يشمل المعالجة المسبقة للبيانات، وهندسة الخصائص، وتدريب النموذج، والتقييم، والعرض البصري.">
+              End-to-end machine learning web application with data preprocessing, feature engineering, model training,
+              evaluation, and visualization.
+            </p>
+            <div class="cf-tags"><span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>ML</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
 
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">04</div>
-          <div class="proj-icon">🔌</div>
-          <h3>Real-time Chat & Notifications</h3>
-          <p>WebSocket-based communication layer with real-time notifications and chat, supporting multi-organization
-            collaboration within the platform.</p>
-          <div class="proj-tags">
-            <span>Socket.io</span><span>NestJS</span><span>WebSockets</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+          <a class="cf-card" data-index="3" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">04</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg></div>
+            <h3 data-en="Real-time Chat & Notifications" data-ar="الدردشة والإشعارات الفورية">Real-time Chat &
+              Notifications</h3>
+            <p data-en="WebSocket-based communication layer with real-time notifications and chat, supporting multi-organization collaboration within the platform."
+              data-ar="طبقة تواصل مبنية على WebSocket مع إشعارات ودردشة فورية، تدعم التعاون بين عدة مؤسسات داخل المنصة.">
+              WebSocket-based communication layer with real-time notifications and chat, supporting multi-organization
+              collaboration within the platform.
+            </p>
+            <div class="cf-tags"><span>Socket.io</span><span>NestJS</span><span>WebSockets</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
 
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">05</div>
-          <div class="proj-icon">🔐</div>
-          <h3>Auth & RBAC System</h3>
-          <p>Production-ready authentication system with JWT, refresh tokens, role-based access control, password
-            hashing, and input validation.</p>
-          <div class="proj-tags">
-            <span>JWT</span><span>RBAC</span><span>Security</span><span>NestJS</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+          <a class="cf-card" data-index="4" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">05</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg></div>
+            <h3 data-en="Auth & RBAC System" data-ar="نظام المصادقة والصلاحيات">Auth & RBAC System</h3>
+            <p data-en="Production-ready authentication system with JWT, refresh tokens, role-based access control, password hashing, and input validation."
+              data-ar="نظام مصادقة جاهز للإنتاج مع JWT، ورموز تحديث، وتحكم بالصلاحيات حسب الدور، وتشفير كلمات المرور، والتحقق من المدخلات.">
+              Production-ready authentication system with JWT, refresh tokens, role-based access control, password
+              hashing, and input validation.
+            </p>
+            <div class="cf-tags"><span>JWT</span><span>RBAC</span><span>Security</span><span>NestJS</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
 
-        <a class="proj-card tilt" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-          rel="noopener">
-          <div class="proj-num">06</div>
-          <div class="proj-icon">📊</div>
-          <h3>Data & ML Experiments</h3>
-          <p>Collection of data science and ML notebooks covering feature engineering, class imbalance handling,
-            cross-validation, and model evaluation.</p>
-          <div class="proj-tags">
-            <span>Pandas</span><span>PyTorch</span><span>TensorFlow</span>
-          </div>
-          <span class="proj-link">View Project →</span>
-        </a>
+          <a class="cf-card" data-index="5" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
+            rel="noopener">
+            <div class="cf-num">06</div>
+            <div class="cf-icon"><svg class="icon-svg" viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg></div>
+            <h3 data-en="Data & ML Experiments" data-ar="تجارب البيانات والتعلم الآلي">Data & ML Experiments</h3>
+            <p data-en="Collection of data science and ML notebooks covering feature engineering, class imbalance handling, cross-validation, and model evaluation."
+              data-ar="مجموعة من دفاتر علوم البيانات والتعلم الآلي تشمل هندسة الخصائص، ومعالجة اختلال الفئات، والتحقق المتقاطع، وتقييم النماذج.">
+              Collection of data science and ML notebooks covering feature engineering, class imbalance handling,
+              cross-validation, and model evaluation.
+            </p>
+            <div class="cf-tags"><span>Pandas</span><span>PyTorch</span><span>TensorFlow</span></div>
+            <span class="cf-link"><span data-en="View Project" data-ar="عرض المشروع">View Project</span><svg
+                class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg></span>
+          </a>
+        </div>
+
+        <div class="cf-controls">
+          <button class="cf-arrow" id="cfPrev" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <div class="cf-dots" id="cfDots"></div>
+          <button class="cf-arrow" id="cfNext" aria-label="Next project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
+    <!-- ============ EXPERIENCE (ACCORDION) ============ -->
     <section class="section reveal" id="experience">
       <div class="section-head">
-        <p class="section-eyebrow">experience</p>
-        <h2 class="section-title title-reveal">Where I've <em>built</em></h2>
+        <p class="section-eyebrow" data-en="experience" data-ar="الخبرة">experience</p>
+        <h2 class="section-title title-reveal">
+          <span data-en="Where I've " data-ar="حيث ">Where I've </span><em data-en="built" data-ar="بنيت">built</em>
+        </h2>
       </div>
 
       <div class="timeline" id="timeline">
-        <!-- TAQAT -->
-        <div class="tl-item">
+
+        <!-- ITEM 1 — TAQAT (OPEN by default) -->
+        <div class="tl-item open">
           <div class="tl-node">
             <span class="tl-dot"></span>
             <span class="tl-pulse"></span>
           </div>
           <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date">May 2026 – Present</span>
-              <span class="tl-badge">● Current</span>
-            </div>
-            <h3>Team Lead & Backend Developer</h3>
-            <span class="tl-company">TAQAT — Internship</span>
-            <ul class="tl-body">
-              <li>Led a cross-functional team across UX/UI, Frontend, Backend, Mobile, QA, and AI in an Agile (Scrum)
-                environment.</li>
-              <li>Designed and developed the backend using NestJS, TypeScript, PostgreSQL, and Prisma with modular
-                architecture and RESTful APIs.</li>
-              <li>Implemented secure auth with JWT, RBAC, refresh-token sessions, password hashing, and input
-                validation.</li>
-              <li>Implemented real-time communication using WebSockets, notifications, and chat.</li>
-              <li>Contributed to frontend development using React.js, integrating backend APIs end-to-end.</li>
-              <li>Designed core internship workflows: applications, attendance, tasks, evaluations, certificates, and
-                dashboards.</li>
-              <li>Improved reliability through validation, error handling, DB transactions, Swagger docs, and Docker.
-              </li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tag">NestJS</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">Prisma</span>
-              <span class="tag">WebSockets</span>
-              <span class="tag">Docker</span>
-              <span class="tag">JWT / RBAC</span>
-              <span class="tag">React</span>
+            <button class="tl-toggle" aria-expanded="true">
+              <div class="tl-toggle-main">
+                <div class="tl-header">
+                  <span class="tl-date" data-en="May 2026 – Present" data-ar="مايو 2026 – الآن">May 2026 –
+                    Present</span>
+                  <span class="tl-badge" data-en="Current" data-ar="حالياً">Current</span>
+                </div>
+                <h3 data-en="Team Lead & Backend Developer" data-ar="قائدة فريق ومطوّرة Backend">Team Lead & Backend
+                  Developer</h3>
+                <span class="tl-company">TAQAT — Internship</span>
+              </div>
+              <span class="tl-chevron">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </button>
+            <div class="tl-content-body">
+              <div class="tl-inner">
+                <ul class="tl-body">
+                  <li
+                    data-en="Led a cross-functional team across UX/UI, Frontend, Backend, Mobile, QA, and AI in an Agile (Scrum) environment."
+                    data-ar="قدت فريقاً متعدد التخصصات يشمل UX/UI والواجهة الأمامية وBackend والموبايل والجودة والذكاء الاصطناعي في بيئة Agile (Scrum).">
+                    Led a cross-functional team across UX/UI, Frontend, Backend, Mobile, QA, and AI in an Agile (Scrum)
+                    environment.</li>
+                  <li
+                    data-en="Designed and developed the backend using NestJS, TypeScript, PostgreSQL, and Prisma with modular architecture and RESTful APIs."
+                    data-ar="صممت وطوّرت الـ Backend باستخدام NestJS وTypeScript وPostgreSQL وPrisma، بمعمارية معيارية وواجهات RESTful.">
+                    Designed and developed the backend using NestJS, TypeScript, PostgreSQL, and Prisma with modular
+                    architecture and RESTful APIs.</li>
+                  <li
+                    data-en="Implemented secure auth with JWT, RBAC, refresh-token sessions, password hashing, and input validation."
+                    data-ar="نفّذت مصادقة آمنة باستخدام JWT، وRBAC، وجلسات refresh-token، وتشفير كلمات المرور، والتحقق من المدخلات.">
+                    Implemented secure auth with JWT, RBAC, refresh-token sessions, password hashing, and input
+                    validation.</li>
+                  <li data-en="Implemented real-time communication using WebSockets, notifications, and chat."
+                    data-ar="نفّذت تواصلاً فورياً باستخدام WebSockets والإشعارات والدردشة.">Implemented real-time
+                    communication using WebSockets, notifications, and chat.</li>
+                  <li data-en="Contributed to frontend development using React.js, integrating backend APIs end-to-end."
+                    data-ar="ساهمت في تطوير الواجهة الأمامية باستخدام React.js مع دمج واجهات الـ Backend من البداية للنهاية.">
+                    Contributed to frontend development using React.js, integrating backend APIs end-to-end.</li>
+                  <li
+                    data-en="Designed core internship workflows: applications, attendance, tasks, evaluations, certificates, and dashboards."
+                    data-ar="صممت سير عمل التدريب الأساسي: الطلبات، الحضور، المهام، التقييمات، الشهادات، ولوحات التحكم.">
+                    Designed core internship workflows: applications, attendance, tasks, evaluations, certificates, and
+                    dashboards.</li>
+                  <li
+                    data-en="Improved reliability through validation, error handling, DB transactions, Swagger docs, and Docker."
+                    data-ar="حسّنت الموثوقية عبر التحقق، ومعالجة الأخطاء، ومعاملات قاعدة البيانات، وتوثيق Swagger، وDocker.">
+                    Improved reliability through validation, error handling, DB transactions, Swagger docs, and Docker.
+                  </li>
+                </ul>
+                <div class="tl-tags">
+                  <span class="tag">NestJS</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">Prisma</span>
+                  <span class="tag">WebSockets</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">JWT / RBAC</span>
+                  <span class="tag">React</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Gaza Sky Geeks -->
+        <!-- ITEM 2 — GSG -->
         <div class="tl-item">
           <div class="tl-node">
             <span class="tl-dot"></span>
           </div>
           <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date">Dec 2025 – Mar 2026</span>
-            </div>
-            <h3>Backend Developer</h3>
-            <span class="tl-company">Gaza Sky Geeks — Internship</span>
-            <ul class="tl-body">
-              <li>Contributed to backend development of a Multi-Vendor Pharmacy Delivery Platform.</li>
-              <li>Designed and implemented authentication and authorization using JWT and RBAC.</li>
-              <li>Developed maintainable, versioned RESTful APIs for the Medication module.</li>
-              <li>Participated in database schema design focused on data integrity and scalability.</li>
-              <li>Applied query optimization and algorithmic improvements to enhance performance.</li>
-              <li>Collaborated with Git version control and participated in the full SDLC.</li>
-              <li>Conducted code reviews and contributed to documentation and testing.</li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">Express</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">JWT / RBAC</span>
-              <span class="tag">REST APIs</span>
-              <span class="tag">Git</span>
+            <button class="tl-toggle" aria-expanded="false">
+              <div class="tl-toggle-main">
+                <div class="tl-header">
+                  <span class="tl-date" data-en="Dec 2025 – Mar 2026" data-ar="ديسمبر 2025 – مارس 2026">Dec 2025 – Mar
+                    2026</span>
+                </div>
+                <h3 data-en="Backend Developer" data-ar="مطوّرة Backend">Backend Developer</h3>
+                <span class="tl-company">Gaza Sky Geeks — Internship</span>
+              </div>
+              <span class="tl-chevron">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </button>
+            <div class="tl-content-body">
+              <div class="tl-inner">
+                <ul class="tl-body">
+                  <li data-en="Contributed to backend development of a Multi-Vendor Pharmacy Delivery Platform."
+                    data-ar="ساهمت في تطوير Backend لمنصة توصيل صيدليات متعددة البائعين.">Contributed to backend
+                    development of a Multi-Vendor Pharmacy Delivery Platform.</li>
+                  <li data-en="Designed and implemented authentication and authorization using JWT and RBAC."
+                    data-ar="صممت ونفّذت المصادقة والتخويل باستخدام JWT وRBAC.">Designed and implemented authentication
+                    and authorization using JWT and RBAC.</li>
+                  <li data-en="Developed maintainable, versioned RESTful APIs for the Medication module."
+                    data-ar="طوّرت واجهات RESTful قابلة للصيانة ومُصدّرة بإصدارات لوحدة الأدوية.">Developed
+                    maintainable, versioned RESTful APIs for the Medication module.</li>
+                  <li data-en="Participated in database schema design focused on data integrity and scalability."
+                    data-ar="شاركت في تصميم مخطط قاعدة البيانات مع التركيز على سلامة البيانات وقابلية التوسّع.">
+                    Participated in database schema design focused on data integrity and scalability.</li>
+                  <li data-en="Applied query optimization and algorithmic improvements to enhance performance."
+                    data-ar="طبّقت تحسين الاستعلامات وتحسينات خوارزمية لتعزيز الأداء.">Applied query optimization and
+                    algorithmic improvements to enhance performance.</li>
+                  <li data-en="Collaborated with Git version control and participated in the full SDLC."
+                    data-ar="تعاونت باستخدام Git وشاركت في دورة تطوير البرمجيات الكاملة.">Collaborated with Git version
+                    control and participated in the full SDLC.</li>
+                  <li data-en="Conducted code reviews and contributed to documentation and testing."
+                    data-ar="أجريت مراجعات كود وساهمت في التوثيق والاختبار.">Conducted code reviews and contributed to
+                    documentation and testing.</li>
+                </ul>
+                <div class="tl-tags">
+                  <span class="tag">Node.js</span>
+                  <span class="tag">Express</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">JWT / RBAC</span>
+                  <span class="tag">REST APIs</span>
+                  <span class="tag">Git</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Areisto -->
+        <!-- ITEM 3 — Areisto -->
         <div class="tl-item">
           <div class="tl-node">
             <span class="tl-dot"></span>
           </div>
           <div class="tl-content">
-            <div class="tl-header">
-              <span class="tl-date">May 2025 – Jul 2025</span>
-            </div>
-            <h3>Machine Learning Engineer</h3>
-            <span class="tl-company">Areisto — Internship</span>
-            <ul class="tl-body">
-              <li>Developed a machine-learning web application for breast cancer detection end-to-end.</li>
-              <li>Performed pre-processing, feature engineering, and class imbalance handling.</li>
-              <li>Trained and evaluated classification models using cross-validation and metrics.</li>
-              <li>Integrated the trained model into a web interface for prediction and visualization.</li>
-            </ul>
-            <div class="tl-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Scikit-learn</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">ML Deployment</span>
+            <button class="tl-toggle" aria-expanded="false">
+              <div class="tl-toggle-main">
+                <div class="tl-header">
+                  <span class="tl-date" data-en="May 2025 – Jul 2025" data-ar="مايو 2025 – يوليو 2025">May 2025 – Jul
+                    2025</span>
+                </div>
+                <h3 data-en="Machine Learning Engineer" data-ar="مهندسة تعلم آلي">Machine Learning Engineer</h3>
+                <span class="tl-company">Areisto — Internship</span>
+              </div>
+              <span class="tl-chevron">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </span>
+            </button>
+            <div class="tl-content-body">
+              <div class="tl-inner">
+                <ul class="tl-body">
+                  <li data-en="Developed a machine-learning web application for breast cancer detection end-to-end."
+                    data-ar="طوّرت تطبيق ويب متكامل للتعلم الآلي لكشف سرطان الثدي.">Developed a machine-learning web
+                    application for breast cancer detection end-to-end.</li>
+                  <li data-en="Performed pre-processing, feature engineering, and class imbalance handling."
+                    data-ar="أجريت المعالجة المسبقة، وهندسة الخصائص، ومعالجة اختلال الفئات.">Performed pre-processing,
+                    feature engineering, and class imbalance handling.</li>
+                  <li data-en="Trained and evaluated classification models using cross-validation and metrics."
+                    data-ar="درّبت وقيّمت نماذج التصنيف باستخدام التحقق المتقاطع والمقاييس.">Trained and evaluated
+                    classification models using cross-validation and metrics.</li>
+                  <li data-en="Integrated the trained model into a web interface for prediction and visualization."
+                    data-ar="دمجت النموذج المدرّب في واجهة ويب للتنبؤ والعرض البصري.">Integrated the trained model into
+                    a web interface for prediction and visualization.</li>
+                </ul>
+                <div class="tl-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Scikit-learn</span>
+                  <span class="tag">Pandas</span>
+                  <span class="tag">ML Deployment</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
     <!-- ============ EDUCATION ============ -->
     <section class="section reveal" id="education">
       <div class="section-head">
-        <p class="section-eyebrow">education & certifications</p>
-        <h2 class="section-title title-reveal">Academic <em>background</em></h2>
+        <p class="section-eyebrow" data-en="education & certifications" data-ar="التعليم والشهادات">education &
+          certifications</p>
+        <h2 class="section-title title-reveal">
+          <span data-en="Academic " data-ar="الخلفية ">Academic </span><em data-en="background"
+            data-ar="الأكاديمية">background</em>
+        </h2>
       </div>
 
       <div class="edu-grid">
         <div class="edu-card reveal">
-          <h3>Bachelor's in Software Engineering</h3>
-          <p class="school">Al-Azhar University — Gaza, Palestine</p>
-          <p class="date">Sept 2020 – Jan 2026</p>
-          <p class="gpa">GPA: 3.7 / 4.0</p>
+          <h3 data-en="Bachelor's in Software Engineering" data-ar="بكالوريوس هندسة البرمجيات">Bachelor's in Software
+            Engineering</h3>
+          <p class="school" data-en="Al-Azhar University — Gaza, Palestine" data-ar="جامعة الأزهر — غزة، فلسطين">
+            Al-Azhar University — Gaza, Palestine</p>
+          <p class="date" data-en="Sept 2020 – Jan 2026" data-ar="سبتمبر 2020 – يناير 2026">Sept 2020 – Jan 2026</p>
+          <p class="gpa" data-en="GPA: 3.7 / 4.0" data-ar="المعدل: 3.7 / 4.0">GPA: 3.7 / 4.0</p>
         </div>
 
         <div class="edu-card reveal">
-          <h3>Diploma — Code2Career</h3>
+          <h3 data-en="Diploma — Code2Career" data-ar="دبلوم — Code2Career">Diploma — Code2Career</h3>
           <p class="school">Gaza Sky Geeks</p>
-          <p class="date">Jun 2025 – Mar 2026</p>
+          <p class="date" data-en="Jun 2025 – Mar 2026" data-ar="يونيو 2025 – مارس 2026">Jun 2025 – Mar 2026</p>
         </div>
 
         <div class="certs-card reveal">
-          <h3>Licenses & Certifications</h3>
+          <h3 data-en="Licenses & Certifications" data-ar="الرخص والشهادات">Licenses & Certifications</h3>
           <div class="cert-grid">
             <div class="cert-item">Python for Data Science and AI — IBM<span class="date">May 2025</span></div>
             <div class="cert-item">Machine Learning Engineer — Areisto<span class="date">Jul 2025</span></div>
@@ -2460,60 +2876,92 @@
     <!-- ============ CONTACT ============ -->
     <section class="section reveal" id="contact">
       <div class="contact-box">
-        <h2>Let's build something <em>great</em></h2>
-        <p>
-          I'm open to discussing new projects, backend engineering roles,
-          or opportunities to be part of your team. Let's talk.
+        <h2>
+          <span data-en="Let's build something " data-ar="لنبنِ شيئاً ">Let's build something </span><em data-en="great"
+            data-ar="عظيماً">great</em>
+        </h2>
+        <p data-en="I'm open to discussing new projects, backend engineering roles, or opportunities to be part of your team. Let's talk."
+          data-ar="أنا منفتحة لمناقشة مشاريع جديدة، أو أدوار في هندسة الـ Backend، أو فرص لأكون جزءاً من فريقك. لنتحدّث.">
+          I'm open to discussing new projects, backend engineering roles, or opportunities to be part of your team.
+          Let's talk.
         </p>
         <div class="contact-links">
-          <a class="btn primary magnetic" href="mailto:eng.shahd.abusharif@gmail.com">✉ Email Me</a>
-          <a class="btn magnetic" href="https://linkedin.com/in/eng-shahd-abu-sharif" target="_blank"
-            rel="noopener">LinkedIn ↗</a>
+          <a class="btn primary magnetic" href="mailto:eng.shahd.abusharif@gmail.com">
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <span data-en="Email Me" data-ar="راسلني">Email Me</span>
+          </a>
+          <a class="btn magnetic" href="https://linkedin.com/in/eng-shahd-abu-sharif" target="_blank" rel="noopener">
+            <span>LinkedIn</span>
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
           <a class="btn magnetic" href="https://github.com/shahd-abu-sharif?tab=repositories" target="_blank"
-            rel="noopener">GitHub ↗</a>
+            rel="noopener">
+            <span>GitHub</span>
+            <svg class="icon-svg sm" viewBox="0 0 24 24">
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
         </div>
       </div>
 
-      <!-- ===== CONTACT FORM ===== -->
       <div class="contact-form-wrap reveal">
         <div class="contact-form-head">
-          <h3>Or send me a <em>direct message</em></h3>
-          <p>Fill this out and it lands in my inbox — I reply within 24h.</p>
+          <h3>
+            <span data-en="Or send me a " data-ar="أو أرسل لي ">Or send me a </span><em data-en="direct message"
+              data-ar="رسالة مباشرة">direct message</em>
+          </h3>
+          <p data-en="Fill this out and it lands in my inbox — I reply within 24h."
+            data-ar="املأ النموذج وستصلني رسالتك مباشرة — أرد خلال 24 ساعة.">
+            Fill this out and it lands in my inbox — I reply within 24h.
+          </p>
         </div>
 
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaeqapgn" method="POST"
-          novalidate>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaeqapgn" method="POST" novalidate>
           <input type="hidden" name="_subject" value="New message from your portfolio" />
           <input type="hidden" name="_captcha" value="false" />
 
           <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name" />
+            <label for="cf-name" data-en="Name" data-ar="الاسم">Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name"
+              data-en-placeholder="Your name" data-ar-placeholder="اسمك" />
           </div>
 
           <div class="form-field">
-            <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required
-              autocomplete="email" />
+            <label for="cf-email" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required autocomplete="email"
+              data-en-placeholder="you@example.com" data-ar-placeholder="you@example.com" />
           </div>
 
           <div class="form-field full">
-            <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required />
+            <label for="cf-subject" data-en="Subject" data-ar="الموضوع">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required
+              data-en-placeholder="What's this about?" data-ar-placeholder="ما هو موضوع رسالتك؟" />
           </div>
 
           <div class="form-field full">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="Write your message here..." required></textarea>
+            <label for="cf-message" data-en="Message" data-ar="الرسالة">Message</label>
+            <textarea id="cf-message" name="message" placeholder="Write your message here..." required
+              data-en-placeholder="Write your message here..." data-ar-placeholder="اكتب رسالتك هنا..."></textarea>
           </div>
 
-          <!-- honeypot (anti-spam) -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
           <div class="form-actions">
-            <span class="form-note">Your message goes straight to my inbox</span>
+            <span class="form-note" data-en="Your message goes straight to my inbox"
+              data-ar="رسالتك تصل مباشرة إلى بريدي">Your message goes straight to my inbox</span>
             <button type="submit" class="form-submit" id="formSubmit">
-              Send Message <span>→</span>
+              <span id="formSubmitText" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</span>
+              <svg class="icon-svg sm" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </button>
           </div>
 
@@ -2526,7 +2974,8 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="wrap foot-inner">
-      <span>© 2026 Shahd Abu Sharif. All rights reserved.</span>
+      <span data-en="© 2026 Shahd Abu Sharif. All rights reserved." data-ar="© 2026 شهد أبو شريف. جميع الحقوق محفوظة.">©
+        2026 Shahd Abu Sharif. All rights reserved.</span>
       <div class="foot-links">
         <a href="https://linkedin.com/in/eng-shahd-abu-sharif" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/shahd-abu-sharif" target="_blank" rel="noopener">GitHub</a>
@@ -2537,30 +2986,68 @@
 
   <script>
     /* =========================================================
-       1. PAGE LOAD — hero entrance
+       0. LANGUAGE TOGGLE
+    ========================================================= */
+    const langToggle = document.getElementById("langToggle");
+    const langCurrent = document.getElementById("langCurrent");
+    const langOther = document.getElementById("langOther");
+
+    let currentLang = localStorage.getItem("portfolio-lang") || "en";
+    applyLang(currentLang);
+
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "en" ? "ar" : "en";
+      applyLang(currentLang);
+      localStorage.setItem("portfolio-lang", currentLang);
+      ri = 0; ci = 0; deleting = false;
+      typed.textContent = "";
+    });
+
+    function applyLang(lang) {
+      const dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.setAttribute("dir", dir);
+      document.documentElement.setAttribute("lang", lang);
+
+      document.querySelectorAll("[data-en]").forEach(el => {
+        const val = el.getAttribute("data-" + lang);
+        if (val !== null) el.textContent = val;
+      });
+      document.querySelectorAll("[data-en-placeholder]").forEach(el => {
+        const val = el.getAttribute(`data-${lang}-placeholder`);
+        if (val !== null) el.setAttribute("placeholder", val);
+      });
+
+      langCurrent.textContent = lang === "en" ? "EN" : "ع";
+      langOther.textContent = lang === "en" ? "ع" : "EN";
+    }
+
+    /* =========================================================
+       1. PAGE LOAD
     ========================================================= */
     window.addEventListener("load", () => {
       setTimeout(() => document.body.classList.add("loaded"), 80);
     });
 
     /* =========================================================
-       2. TYPEWRITER ROLES
+       2. TYPEWRITER
     ========================================================= */
-    const roles = ["Backend Engineer", "Team Lead", "Software Architect", "System Designer"];
+    const rolesEN = ["Backend Engineer", "Team Lead", "Software Architect", "System Designer"];
+    const rolesAR = ["مطورة Backend", "قائدة فريق", "مهندسة برمجيات", "محللة أنظمة"];
     const typed = document.getElementById("typed");
     let ri = 0, ci = 0, deleting = false;
     function type() {
-      const word = roles[ri];
+      const roles = document.documentElement.lang === "ar" ? rolesAR : rolesEN;
+      const word = roles[ri % roles.length];
       typed.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
       let delay = deleting ? 45 : 95;
-      if (!deleting && ci > word.length) {delay = 1600; deleting = true;}
-      else if (deleting && ci < 0) {deleting = false; ri = (ri + 1) % roles.length; ci = 0; delay = 300;}
+      if (!deleting && ci > word.length) { delay = 1600; deleting = true; }
+      else if (deleting && ci < 0) { deleting = false; ri = (ri + 1) % roles.length; ci = 0; delay = 300; }
       setTimeout(type, delay);
     }
     type();
 
     /* =========================================================
-       3. SCROLL PROGRESS BAR
+       3. SCROLL PROGRESS
     ========================================================= */
     const progressBar = document.getElementById("scrollProgress");
     function updateProgress() {
@@ -2568,10 +3055,10 @@
       const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
       progressBar.style.width = (scrolled * 100) + "%";
     }
-    window.addEventListener("scroll", updateProgress, {passive: true});
+    window.addEventListener("scroll", updateProgress, { passive: true });
 
     /* =========================================================
-       4. NAVBAR — scrolled + active link
+       4. NAVBAR
     ========================================================= */
     const navbar = document.getElementById("navbar");
     const navLinks = document.querySelectorAll(".nav-links a[data-section]");
@@ -2579,7 +3066,6 @@
 
     function updateNav() {
       navbar.classList.toggle("scrolled", window.scrollY > 20);
-
       let current = "home";
       const offset = window.innerHeight * 0.35;
       sections.forEach(sec => {
@@ -2587,7 +3073,7 @@
       });
       navLinks.forEach(a => a.classList.toggle("active", a.dataset.section === current));
     }
-    window.addEventListener("scroll", updateNav, {passive: true});
+    window.addEventListener("scroll", updateNav, { passive: true });
     updateNav();
 
     /* =========================================================
@@ -2601,12 +3087,10 @@
       document.body.classList.add("custom-cursor-active");
       let mx = window.innerWidth / 2, my = window.innerHeight / 2;
       let rx = mx, ry = my;
-
       document.addEventListener("mousemove", (e) => {
         mx = e.clientX; my = e.clientY;
         dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
       });
-
       function animateRing() {
         rx += (mx - rx) * 0.18;
         ry += (my - ry) * 0.18;
@@ -2615,7 +3099,7 @@
       }
       animateRing();
 
-      const hoverTargets = "a, button, .btn, .proj-card, .stat, .edu-card, .glass, .tag, .tech-icon, input, textarea";
+      const hoverTargets = "a, button, .btn, .stat, .edu-card, .glass, .tag, input, textarea, .cf-card, .lang-toggle, .tl-toggle";
       document.querySelectorAll(hoverTargets).forEach(el => {
         el.addEventListener("mouseenter", () => ring.classList.add("hover"));
         el.addEventListener("mouseleave", () => ring.classList.remove("hover"));
@@ -2623,7 +3107,7 @@
     }
 
     /* =========================================================
-       6. REVEAL ON SCROLL (staggered)
+       6. REVEAL ON SCROLL
     ========================================================= */
     const revealIO = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
@@ -2633,16 +3117,14 @@
           revealIO.unobserve(e.target);
         }
       });
-    }, {threshold: 0.12, rootMargin: "0px 0px -50px 0px"});
-
+    }, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
     document.querySelectorAll(".reveal").forEach(el => revealIO.observe(el));
 
     /* =========================================================
-       7. STAGGERED GRID REVEALS
+       7. STAGGERED REVEALS
     ========================================================= */
     function staggerChildren(containerSelector, childSelector, baseDelay = 0) {
-      const containers = document.querySelectorAll(containerSelector);
-      containers.forEach(container => {
+      document.querySelectorAll(containerSelector).forEach(container => {
         const children = container.querySelectorAll(childSelector);
         const io = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -2656,23 +3138,19 @@
               io.unobserve(container);
             }
           });
-        }, {threshold: 0.08});
-
+        }, { threshold: 0.08 });
         children.forEach(child => {
           child.style.opacity = "0";
           child.style.transform = "translateY(30px)";
         });
-
         io.observe(container);
       });
     }
-
-    staggerChildren(".proj-grid", ".proj-card", 0);
     staggerChildren(".skills-grid", ".skill", 0);
     staggerChildren(".timeline", ".tl-item", 0.1);
 
     /* =========================================================
-       8. SECTION TITLE REVEAL (simple fade + slide)
+       8. TITLE REVEAL
     ========================================================= */
     const titleIO = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -2681,7 +3159,7 @@
           titleIO.unobserve(e.target);
         }
       });
-    }, {threshold: 0.2});
+    }, { threshold: 0.2 });
     document.querySelectorAll(".title-reveal").forEach(el => titleIO.observe(el));
 
     /* =========================================================
@@ -2694,7 +3172,7 @@
           skillIO.unobserve(e.target);
         }
       });
-    }, {threshold: 0.35});
+    }, { threshold: 0.35 });
     document.querySelectorAll(".skill").forEach(el => skillIO.observe(el));
 
     const counterIO = new IntersectionObserver((entries) => {
@@ -2716,11 +3194,11 @@
           counterIO.unobserve(el);
         }
       });
-    }, {threshold: 0.6});
+    }, { threshold: 0.6 });
     document.querySelectorAll("[data-count]").forEach(el => counterIO.observe(el));
 
     /* =========================================================
-       10. TIMELINE LINE DRAW
+       10. TIMELINE LINE
     ========================================================= */
     const timelineEl = document.getElementById("timeline");
     if (timelineEl) {
@@ -2731,9 +3209,32 @@
             tlIO.unobserve(timelineEl);
           }
         });
-      }, {threshold: 0.05});
+      }, { threshold: 0.05 });
       tlIO.observe(timelineEl);
     }
+
+    /* =========================================================
+       10b. TIMELINE ACCORDION
+    ========================================================= */
+    const tlItems = document.querySelectorAll(".tl-item");
+    tlItems.forEach(item => {
+      const toggle = item.querySelector(".tl-toggle");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        // close all
+        tlItems.forEach(i => {
+          i.classList.remove("open");
+          const t = i.querySelector(".tl-toggle");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+        // open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add("open");
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
 
     /* =========================================================
        11. MAGNETIC BUTTONS
@@ -2747,33 +3248,12 @@
           const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
           el.style.transform = `translate(${x * strength}px, ${y * strength - 3}px)`;
         });
-        el.addEventListener("mouseleave", () => {
-          el.style.transform = "";
-        });
+        el.addEventListener("mouseleave", () => { el.style.transform = ""; });
       });
     }
 
     /* =========================================================
-       12. 3D TILT ON CARDS
-    ========================================================= */
-    if (!isTouch) {
-      document.querySelectorAll(".tilt").forEach(card => {
-        const maxTilt = 6;
-        card.addEventListener("mousemove", (e) => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform =
-            `translateY(-6px) rotateY(${x * maxTilt}deg) rotateX(${-y * maxTilt}deg)`;
-        });
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "";
-        });
-      });
-    }
-
-    /* =========================================================
-       13. PHOTO TILT (3D)
+       12. PHOTO TILT
     ========================================================= */
     const photo = document.getElementById("photo");
     const img = photo ? photo.querySelector("img") : null;
@@ -2784,13 +3264,11 @@
         const y = (e.clientY - r.top) / r.height - 0.5;
         img.style.transform = `translateX(-50%) rotateY(${x * 12}deg) rotateX(${-y * 8}deg)`;
       });
-      photo.addEventListener("mouseleave", () => {
-        img.style.transform = "translateX(-50%)";
-      });
+      photo.addEventListener("mouseleave", () => { img.style.transform = "translateX(-50%)"; });
     }
 
     /* =========================================================
-       14. ORBS PARALLAX ON SCROLL
+       13. ORBS PARALLAX
     ========================================================= */
     const parallaxEls = document.querySelectorAll("[data-parallax]");
     let ticking = false;
@@ -2803,14 +3281,11 @@
       ticking = false;
     }
     window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(parallax);
-        ticking = true;
-      }
-    }, {passive: true});
+      if (!ticking) { requestAnimationFrame(parallax); ticking = true; }
+    }, { passive: true });
 
     /* =========================================================
-       15. SMOOTH SCROLL (with sticky offset)
+       14. SMOOTH SCROLL
     ========================================================= */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
@@ -2820,40 +3295,40 @@
         if (!target) return;
         e.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({top, behavior: "smooth"});
+        window.scrollTo({ top, behavior: "smooth" });
       });
     });
 
     /* =========================================================
-       16. CONTACT FORM — AJAX submit via Formspree
+       15. CONTACT FORM
     ========================================================= */
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
       const submitBtn = document.getElementById("formSubmit");
+      const submitText = document.getElementById("formSubmitText");
       const formMsg = document.getElementById("formMessage");
 
       contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         const name = contactForm.name.value.trim();
         const email = contactForm.email.value.trim();
         const subject = contactForm.subject.value.trim();
         const message = contactForm.message.value.trim();
+        const isAR = document.documentElement.lang === "ar";
 
         if (!name || !email || !subject || !message) {
-          showFormMessage("Please fill in all fields.", "error");
+          showFormMessage(isAR ? "الرجاء تعبئة جميع الحقول." : "Please fill in all fields.", "error");
           return;
         }
-
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          showFormMessage("Please enter a valid email address.", "error");
+          showFormMessage(isAR ? "الرجاء إدخال بريد إلكتروني صحيح." : "Please enter a valid email address.", "error");
           return;
         }
 
         submitBtn.disabled = true;
         submitBtn.classList.add("loading");
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "Sending…";
+        const originalText = submitText.textContent;
+        submitText.textContent = isAR ? "جارٍ الإرسال…" : "Sending…";
         formMsg.classList.remove("show", "success", "error");
 
         try {
@@ -2861,35 +3336,163 @@
           const res = await fetch(contactForm.action, {
             method: "POST",
             body: data,
-            headers: {"Accept": "application/json"}
+            headers: { "Accept": "application/json" }
           });
 
           if (res.ok) {
-            showFormMessage("✓ Message sent! I'll get back to you soon.", "success");
+            showFormMessage(isAR ? "✓ تم إرسال رسالتك! سأرد قريباً." : "✓ Message sent! I'll get back to you soon.", "success");
             contactForm.reset();
           } else {
             const json = await res.json().catch(() => ({}));
-            const err = (json.errors && json.errors[0] && json.errors[0].message) || "Something went wrong. Try again.";
+            const err = (json.errors && json.errors[0] && json.errors[0].message) ||
+              (isAR ? "حدث خطأ. حاول مرة أخرى." : "Something went wrong. Try again.");
             showFormMessage(err, "error");
           }
         } catch (err) {
-          showFormMessage("Network error. Please check your connection and try again.", "error");
+          showFormMessage(isAR ? "خطأ في الشبكة. تحقق من اتصالك وحاول مجدداً." : "Network error. Please check your connection and try again.", "error");
         } finally {
           submitBtn.disabled = false;
           submitBtn.classList.remove("loading");
-          submitBtn.innerHTML = originalText;
+          submitText.textContent = originalText;
         }
       });
 
       function showFormMessage(text, type) {
         formMsg.textContent = text;
         formMsg.className = "form-message show " + type;
-        if (type === "success") {
-          setTimeout(() => {
-            formMsg.classList.remove("show");
-          }, 6000);
-        }
+        if (type === "success") setTimeout(() => formMsg.classList.remove("show"), 6000);
       }
+    }
+
+    /* =========================================================
+       16. COVERFLOW CAROUSEL
+    ========================================================= */
+    const coverflow = document.getElementById("coverflow");
+    const cfDots = document.getElementById("cfDots");
+    const cfPrev = document.getElementById("cfPrev");
+    const cfNext = document.getElementById("cfNext");
+
+    if (coverflow) {
+      const cards = Array.from(coverflow.querySelectorAll(".cf-card"));
+      let activeIndex = 0;
+      let autoplayId = null;
+      let isPaused = false;
+
+      function buildDots() {
+        cfDots.innerHTML = "";
+        cards.forEach((_, i) => {
+          const d = document.createElement("button");
+          d.className = "cf-dot" + (i === 0 ? " active" : "");
+          d.setAttribute("aria-label", `Go to slide ${i + 1}`);
+          d.addEventListener("click", () => goTo(i));
+          cfDots.appendChild(d);
+        });
+      }
+
+      function updateDots() {
+        cfDots.querySelectorAll(".cf-dot").forEach((d, i) => {
+          d.classList.toggle("active", i === activeIndex);
+        });
+      }
+
+      function isRTL() {
+        return document.documentElement.getAttribute("dir") === "rtl";
+      }
+
+      function updateCoverflow() {
+        const rtl = isRTL();
+        cards.forEach((card, i) => {
+          const offset = i - activeIndex;
+          const absOff = Math.abs(offset);
+
+          if (absOff > 2) {
+            card.style.opacity = "0";
+            card.style.pointerEvents = "none";
+            const xPos = offset > 0 ? 180 : -180;
+            card.style.transform = `translate(-50%, -50%) translateX(${xPos}%) scale(0.5)`;
+            card.style.zIndex = 0;
+            return;
+          }
+
+          const scale = 1 - absOff * 0.18;
+          const rotateY = (rtl ? -1 : 1) * offset * -42;
+          const translateX = (rtl ? -1 : 1) * offset * 58;
+          const opacity = 1 - absOff * 0.35;
+          const z = 100 - absOff * 50;
+
+          card.style.transform = `translate(-50%, -50%) translateX(${translateX}%) rotateY(${rotateY}deg) scale(${scale})`;
+          card.style.opacity = opacity;
+          card.style.zIndex = 10 - absOff;
+          card.style.pointerEvents = "auto";
+          card.classList.toggle("active", offset === 0);
+        });
+        updateDots();
+      }
+
+      function goTo(i) {
+        activeIndex = (i + cards.length) % cards.length;
+        updateCoverflow();
+      }
+      function next() { goTo(activeIndex + 1); }
+      function prev() { goTo(activeIndex - 1); }
+
+      cards.forEach((card, i) => {
+        card.addEventListener("click", (e) => {
+          if (i !== activeIndex) {
+            e.preventDefault();
+            goTo(i);
+          }
+        });
+      });
+
+      cfNext.addEventListener("click", next);
+      cfPrev.addEventListener("click", prev);
+
+      document.addEventListener("keydown", (e) => {
+        const projects = document.getElementById("projects");
+        if (!projects) return;
+        const r = projects.getBoundingClientRect();
+        if (r.top > window.innerHeight || r.bottom < 0) return;
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft") prev();
+      });
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayId = setInterval(() => {
+          if (!isPaused) next();
+        }, 5000);
+      }
+      function stopAutoplay() {
+        if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
+      }
+      coverflow.addEventListener("mouseenter", () => isPaused = true);
+      coverflow.addEventListener("mouseleave", () => isPaused = false);
+
+      let touchStartX = 0;
+      coverflow.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      coverflow.addEventListener("touchend", (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          if (dx < 0) next(); else prev();
+        }
+      }, { passive: true });
+
+      buildDots();
+      setTimeout(updateCoverflow, 100);
+      startAutoplay();
+
+      langToggle.addEventListener("click", () => {
+        setTimeout(updateCoverflow, 50);
+      });
+
+      let resizeT;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(updateCoverflow, 100);
+      });
     }
   </script>
 </body>
